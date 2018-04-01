@@ -1,0 +1,20 @@
+{
+  "name": "aida-device-control",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Muthaheer",
+  "license": "ISC",
+  "dependencies": {
+    "epoll": "^2.0.0",
+    "express": "^4.16.3",
+    "firebase-admin": "^5.11.0",
+    "node-webcam": "^0.4.3",
+    "onoff": "^2.0.0",
+    "request-json": "^0.6.3",
+    "rpio": "^0.9.21"
+  }
+}
