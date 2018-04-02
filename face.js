@@ -29,8 +29,8 @@ exports.clickImage = function(){
       device: false, 
       // [location, buffer, base64] 
       // Webcam.CallbackReturnTypes 
-   
-      callbackReturn: "location",  
+      callbackReturn: "base64",
+      //callbackReturn: base64,  
       //Logging 
       verbose: false
    
@@ -41,42 +41,12 @@ exports.clickImage = function(){
    
   var Webcam = NodeWebcam.create( opts );
    
-   
-  //Will automatically append location output type 
-   
-  Webcam.capture( "test_picture", function( err, data ) {} );
-   
-   
-  //Also available for quick use 
-   
-  NodeWebcam.capture( "test_picture", opts, function( err, data ) {
-   
-  });
-   
-   
-  //Get list of cameras 
-   
-  Webcam.list( function( list ) {
-   
-      //Use another device 
-   
-      var anotherCam = NodeWebcam.create( { device: list[ 0 ] } );
-   
-  });
-   
-  //Return type with base 64 image 
-   
-  var opts = {
-      callbackReturn: "base64"
-  };
-   
-  NodeWebcam.capture( "test_picture", opts, function( err, data ) {
-      var image = "<img src='" + data + "'>";
-      var imageData = data.split(',');
-      var encodedImage = {
-           imageData : imageData[1]
-      }
-      recogniseImage(encodedImage)
+  Webcam.capture( "test_picture", function( err, data ) {
+    var imageData = data.split(',');
+    var encodedImage = {
+         imageData : imageData[1]
+    }
+    recogniseImage(encodedImage) 
   });
 };
 
