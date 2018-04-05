@@ -1,8 +1,9 @@
 
 var NodeWebcam = require('node-webcam');
 var request = require('request-json');
-
-var client = request.createClient('https://0c41d6a2.ngrok.io/');
+var tts = require('./tts');
+var say = require('say')
+var client = request.createClient('http://192.168.1.115:8000/');
 
 exports.clickImage = function(){
     //Default options 
@@ -45,15 +46,23 @@ exports.clickImage = function(){
     var imageData = data.split(',');
     var encodedImage = {
          imageData : imageData[1]
-    }
-    recogniseImage(encodedImage) 
+    };
+    
+    recogniseImage(encodedImage);
   });
+  
 };
 
 function recogniseImage(encodedImage){
-    console.log(encodedImage)
+    //console.log(encodedImage)
     
     client.post('face-recognition', encodedImage, function(err, res, body) {
-        console.log(body);
+        console.log(body.faces)
+        if (body.faces.length > 0){
+          console.log("Entered");
+          tts.say(body.faces[0].name+' has arrived')
+        } else {
+          tts.say('You have an unknown visitor')
+        }
       });
 }

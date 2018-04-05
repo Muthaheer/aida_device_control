@@ -1,5 +1,6 @@
 var Gpio = require('onoff').Gpio; // for managing gpio pins
 var face = require('./face');
+var tts = require('./tts');
 
 // listener for device state changed
 exports.onDeviceChanged = function(device) {
@@ -22,7 +23,15 @@ exports.onButtonClick = function(){
     return;
     }
     console.log('button pressed');
+    
     face.clickImage();
+
+    /*if (recognised_person.error == false){
+      tts.say(recognised_person.face+' has arrived')
+    } else {
+      tts.say('You have an unkown vistor')
+    }
+    */
     //door.writeSync(value); //turn LED on or off depending on the button state (0 or 1)
   });
   
